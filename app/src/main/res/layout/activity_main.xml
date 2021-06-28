@@ -1,18 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/txt_pick"
+        android:text="@string/current_pick"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:background="#666666"
+        android:gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="@string/color_primrose"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:background="@color/primrose"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="@string/color_apricot"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:background="@color/apricot"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="@string/color_honeydew"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:background="@color/honeydew"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="@string/color_poppy"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:background="@color/poppy"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:background="#333333">
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/radio_primrose"
+            android:layout_marginLeft="35dp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="35dp"
+            android:id="@+id/radio_apricot"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_weight="1"
+            android:id="@+id/radio_honeydew"
+            android:checked="false"/>
+
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_weight="1"
+            android:id="@+id/radio_poppy"
+            android:checked="false"/>
+    </RadioGroup>
+</LinearLayout>

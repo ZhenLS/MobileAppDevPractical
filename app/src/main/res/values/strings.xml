@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Practical_Mobile App Development</string>
+    <string name="app_name">P3_High Level UI</string>
+    <string name="current_pick">Current Pick</string>
+    <string name="color_red">RED</string>
+    <string name="color_primrose">Primrose</string>
+    <string name="color_apricot">Apricot</string>
+    <string name="color_honeydew">Honeydew</string>
+    <string name="color_poppy">Poppy</string>
 </resources>

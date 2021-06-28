@@ -2,8 +2,11 @@ package com.example.practical_mobileappdevelopment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -28,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         RadioButton radioBtnPoppy = findViewById(R.id.radio_poppy);
 
         // Define colorChangeListener
-        colorChangeListener = new View.OnClickListener(){
+        colorChangeListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RadioButton temp = (RadioButton) v;
-                switch (v.getId()){
+                switch (v.getId()) {
                     case R.id.radio_primrose:
                         textView.setBackgroundColor(getResources().getColor(R.color.primrose));
                         break;
@@ -58,4 +61,30 @@ public class MainActivity extends AppCompatActivity {
         radioBtnHoneydew.setOnClickListener(colorChangeListener);
         radioBtnPoppy.setOnClickListener(colorChangeListener);
     }
+
+    /**
+     * Create an option menu at Top Right Corner
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+//        getMenuInflater().inflate(R.menu.example_menu, menu);
+        menu.add("Next Page").setIntent(new Intent(this, NextActivity.class));
+        menu.add("Exit")
+                .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        finish();
+                        return false;
+                    }
+                });
+        return true;
+    }
+
+    /**
+     * Configure Actions on OptionsItem clicked
+     */
 }

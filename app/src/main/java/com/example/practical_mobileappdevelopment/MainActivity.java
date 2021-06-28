@@ -1,5 +1,6 @@
 package com.example.practical_mobileappdevelopment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Create an option menu at Top Right Corner
+     *
      * @param menu
      * @return
      */
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-//        getMenuInflater().inflate(R.menu.example_menu, menu);
         menu.add("Next Page").setIntent(new Intent(this, NextActivity.class));
         menu.add("Exit")
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -81,10 +83,32 @@ public class MainActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+
+        getMenuInflater().inflate(R.menu.example_menu, menu);
         return true;
     }
 
     /**
      * Configure Actions on OptionsItem clicked
      */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.subItem1:
+                Toast.makeText(this, "SubItem 1", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.subItem2:
+                Toast.makeText(this, "SubItem 2", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.subItem3:
+                Toast.makeText(this, "SubItem 3", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.subItem4:
+                Toast.makeText(this, "SubItem 4", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

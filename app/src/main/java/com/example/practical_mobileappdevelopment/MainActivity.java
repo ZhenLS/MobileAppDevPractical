@@ -3,6 +3,7 @@ package com.example.practical_mobileappdevelopment;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
@@ -20,32 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
 
-        /**
-         * Exercise 3: Draw Rectangle in ImageView
-         */
-
-        // Attributes for Rounded Rectangle
-        float[] outerRadii = new float[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10};    // Radius value of each corner
-        float[] innerRadii = new float[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
-        RectF insetRect = new RectF(15, 10, 15, 10);  // Inner padding of Rect
-
-
-        ShapeDrawable roundedRect = new ShapeDrawable(new RoundRectShape(outerRadii, insetRect, innerRadii));
-        roundedRect.getPaint().setColor(Color.parseColor("#FAE0CC"));
-//        roundedRect.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
-
-        // Aspect Ratio of Whole Rect (Ratio of Width vs Height)
-        roundedRect.setIntrinsicHeight(50);
-        roundedRect.setIntrinsicWidth(100);
-
-        // Create ImageView to show Rectangle
-        ImageView imageView = new ImageView(this);
-        imageView.setImageDrawable(roundedRect);
-
-        // Set content View to ImageView
-        setContentView(imageView);
-
-//        setContentView(new CustomView(this));
+        setContentView(new CustomView(this));
     }
 
     private static class CustomView extends View {
@@ -58,6 +34,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onDraw(Canvas canvas) {      // Canvas == drawing pad
+            /**
+             * Drawing Pacman
+             * Method 1: using onDraw in CustomView
+             */
+
+            Paint pManPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            canvas.drawColor(Color.DKGRAY);
+
+            // Body of Pacman
+            pManPaint.setColor(Color.parseColor("#FFEE87"));
+            canvas.drawArc(new RectF(getWidth() / 2 - 200,
+                            200,
+                            getWidth() / 2 + 200, 600),
+                    40, 290,
+                    true, pManPaint);
+
+            // Eye of Pacman
+            pManPaint.setColor(Color.BLACK);
+            canvas.drawCircle(getWidth() / 2 + 50,
+                    getHeight() / 2 - 750,
+                    20, pManPaint);
         }
     }
 }

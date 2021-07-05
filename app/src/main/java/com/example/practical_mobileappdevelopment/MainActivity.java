@@ -1,8 +1,11 @@
 package com.example.practical_mobileappdevelopment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -60,7 +63,27 @@ public class MainActivity extends AppCompatActivity {
             canvas.drawText("2ND Low LEVEL UI",
                     10, 100, paint);
 
+            /**
+             * Exercise 2: Add Picture
+             * 1. Create Bitmap
+             * 2. Add Intended Transformation
+             * 3. Use canvas.drawBitmap() to draw
+             */
+            Bitmap picture = BitmapFactory.decodeResource(getResources(),R.drawable.docker_icon);
 
+            // Transformation: Scaling, Translation, Rotation, Reflection
+            Matrix transMatrix = new Matrix();
+            transMatrix.preScale(2.0f, 2.0f);   // Scaling Up
+            transMatrix.preScale(-1.0f, 1.0f); // Inverse position
+            transMatrix.preRotate(15);
+
+            // Create Transformed Picture Based on original picture
+            Bitmap transformedPic = Bitmap.createBitmap(picture,
+                    0,0,picture.getWidth(),picture.getHeight(),
+                    transMatrix,false);
+
+            // Draw Picture on Canvas
+            canvas.drawBitmap(transformedPic,10,150,null);
         }
     }
 }

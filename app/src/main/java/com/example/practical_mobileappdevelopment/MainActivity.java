@@ -1,7 +1,5 @@
 package com.example.practical_mobileappdevelopment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,7 +8,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 
-import java.lang.reflect.Type;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,10 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onDraw(Canvas canvas) {      // Canvas == drawing pad
-            // set bg color
+            /**
+             * When using Canvas:
+             * 1. Set Background Color
+             * 2. Set Paint (Line/Shape) Color
+             * 3. Setup Fonts
+             * 4. Draw primitive operations / Shape
+              */
+
+            // Set BG Color
             canvas.drawColor(Color.DKGRAY);
 
-            // set paint color
+            // Set Paint Color
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);     // Anti alias: replace the jagger line with smooth line
 
             // 2nd Component: Fonts

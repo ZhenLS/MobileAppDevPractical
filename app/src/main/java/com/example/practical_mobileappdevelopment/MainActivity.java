@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
              * 2. Set Paint (Line/Shape) Color
              * 3. Setup Fonts
              * 4. Draw primitive operations / Shape
-              */
+             */
 
             // Set BG Color
             canvas.drawColor(Color.DKGRAY);
@@ -52,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
             // 3rd component: drawing primitive operations / shape
             canvas.drawText("This is my Low-Level_UI using View.",
                     10, 50, paint);
+
+            // Second Format
+            paint.setColor(Color.parseColor("aqua"));
+            Typeface typeface1 = Typeface.create(Typeface.SERIF, Typeface.BOLD_ITALIC);
+            paint.setTypeface(typeface1);
+            canvas.drawText("2ND Low LEVEL UI",
+                    10, 100, paint);
+
+
         }
     }
 }

@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         mySQLiteAdapter.openToRead();
 //        String contentRead = mySQLiteAdapter.queueMultipleColumn();
 //        String contentRead = mySQLiteAdapter.queueMultipleColumnOnSelection();
-        String contentRead = mySQLiteAdapter.queueWithOrder();
+//        String contentRead = mySQLiteAdapter.queueWithOrder();
+        String contentRead = mySQLiteAdapter.sumPriceByIngredient();
         mySQLiteAdapter.close();
 
         listContent.setText(contentRead);

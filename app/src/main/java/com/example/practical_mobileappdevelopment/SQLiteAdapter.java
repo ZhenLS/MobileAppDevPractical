@@ -124,6 +124,7 @@ public class SQLiteAdapter {
      * SELECT Content, Content_2, Value FROM MY_TABLE_Form
      * WHERE Content_2 == 'RICE' OR Content_2 == 'Flour'
      * ORDER BY Content ASC
+     *
      * @return
      */
     public String queueWithOrder() {
@@ -147,28 +148,29 @@ public class SQLiteAdapter {
         }
         return result;
     }
+
     /**
-     * Q4 Order BY
-     * SELECT Content, Content_2, Value FROM MY_TABLE_Form
-     * WHERE Content_2 == 'RICE' OR Content_2 == 'Flour'
-     * ORDER BY Content ASC
+     * Q5
+     * SELECT Content_2, sum(Value) FROM MY_TABLE_Form
+     * GROUP BY Content_2 (Ingredient)
+     * ORDER BY Content DESC
+     *
      * @return
      */
-    public String queueWithOrder() {
-        String[] columns = new String[]{KEY_CONTENT, KEY_CONTENT_2, VALUE};
+    public String sumPriceByIngredient() {
+        String[] columns = new String[]{KEY_CONTENT_2, "sum(" + VALUE + ")"};
         Cursor cursor = sqLiteDatabase.query(MYDATABASE_TABLE, columns,
-                KEY_CONTENT_2 + "=? OR " + KEY_CONTENT_2 + "=?",
-                new String[]{"Rice", "Flour"}, null, null, VALUE + " DESC");
+                null,
+                null, KEY_CONTENT_2, null, "sum(" + VALUE + ") "  + " DESC");
         String result = "";
 
         /** Get Column ID*/
-        int index_CONTENT = cursor.getColumnIndex(KEY_CONTENT);
         int index_CONTENT_2 = cursor.getColumnIndex(KEY_CONTENT_2);
-        int index_CONTENT_3 = cursor.getColumnIndex(VALUE);
+        int index_CONTENT_3 = cursor.getColumnIndex("sum(" + VALUE + ")");
         /** Loop Through Data*/
         for (cursor.moveToFirst(); !(cursor.isAfterLast());
              cursor.moveToNext()) {
-            result = result + cursor.getString(index_CONTENT) + "; "
+            result = result
                     + cursor.getString(index_CONTENT_2) + "; "
                     + cursor.getString(index_CONTENT_3)
                     + "\n";

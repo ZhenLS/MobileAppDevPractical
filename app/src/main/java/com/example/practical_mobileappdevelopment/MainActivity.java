@@ -28,13 +28,14 @@ public class MainActivity extends AppCompatActivity {
         mySQLiteAdapter.insert("Char Kuey Tiao", "Kuey Tiao", 6);
         mySQLiteAdapter.insert("Kuih Nyonya", "Pandan", 2);
         mySQLiteAdapter.insert("Ulam", "Vege", 12);
-        mySQLiteAdapter.insert("Nasi Kandar", "Rice", 10);
+        mySQLiteAdapter.insert("Nasi Kandar", "Rice", 15);
         mySQLiteAdapter.insert("Curry Laksa", "Noodles", 21);
         mySQLiteAdapter.close();
 
         mySQLiteAdapter.openToRead();
 //        String contentRead = mySQLiteAdapter.queueMultipleColumn();
-        String contentRead = mySQLiteAdapter.queueMultipleColumnOnSelection();
+//        String contentRead = mySQLiteAdapter.queueMultipleColumnOnSelection();
+        String contentRead = mySQLiteAdapter.queueWithOrder();
         mySQLiteAdapter.close();
 
         listContent.setText(contentRead);

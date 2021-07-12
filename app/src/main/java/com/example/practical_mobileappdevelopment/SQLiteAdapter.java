@@ -119,6 +119,63 @@ public class SQLiteAdapter {
         return result;
     }
 
+    /**
+     * Q4 Order BY
+     * SELECT Content, Content_2, Value FROM MY_TABLE_Form
+     * WHERE Content_2 == 'RICE' OR Content_2 == 'Flour'
+     * ORDER BY Content ASC
+     * @return
+     */
+    public String queueWithOrder() {
+        String[] columns = new String[]{KEY_CONTENT, KEY_CONTENT_2, VALUE};
+        Cursor cursor = sqLiteDatabase.query(MYDATABASE_TABLE, columns,
+                KEY_CONTENT_2 + "=? OR " + KEY_CONTENT_2 + "=?",
+                new String[]{"Rice", "Flour"}, null, null, VALUE + " DESC");
+        String result = "";
+
+        /** Get Column ID*/
+        int index_CONTENT = cursor.getColumnIndex(KEY_CONTENT);
+        int index_CONTENT_2 = cursor.getColumnIndex(KEY_CONTENT_2);
+        int index_CONTENT_3 = cursor.getColumnIndex(VALUE);
+        /** Loop Through Data*/
+        for (cursor.moveToFirst(); !(cursor.isAfterLast());
+             cursor.moveToNext()) {
+            result = result + cursor.getString(index_CONTENT) + "; "
+                    + cursor.getString(index_CONTENT_2) + "; "
+                    + cursor.getString(index_CONTENT_3)
+                    + "\n";
+        }
+        return result;
+    }
+    /**
+     * Q4 Order BY
+     * SELECT Content, Content_2, Value FROM MY_TABLE_Form
+     * WHERE Content_2 == 'RICE' OR Content_2 == 'Flour'
+     * ORDER BY Content ASC
+     * @return
+     */
+    public String queueWithOrder() {
+        String[] columns = new String[]{KEY_CONTENT, KEY_CONTENT_2, VALUE};
+        Cursor cursor = sqLiteDatabase.query(MYDATABASE_TABLE, columns,
+                KEY_CONTENT_2 + "=? OR " + KEY_CONTENT_2 + "=?",
+                new String[]{"Rice", "Flour"}, null, null, VALUE + " DESC");
+        String result = "";
+
+        /** Get Column ID*/
+        int index_CONTENT = cursor.getColumnIndex(KEY_CONTENT);
+        int index_CONTENT_2 = cursor.getColumnIndex(KEY_CONTENT_2);
+        int index_CONTENT_3 = cursor.getColumnIndex(VALUE);
+        /** Loop Through Data*/
+        for (cursor.moveToFirst(); !(cursor.isAfterLast());
+             cursor.moveToNext()) {
+            result = result + cursor.getString(index_CONTENT) + "; "
+                    + cursor.getString(index_CONTENT_2) + "; "
+                    + cursor.getString(index_CONTENT_3)
+                    + "\n";
+        }
+        return result;
+    }
+
     public class SQLiteHelper extends SQLiteOpenHelper {
         public SQLiteHelper(Context context, String name,
                             CursorFactory factory, int version) {

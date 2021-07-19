@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -135,6 +136,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         textView.setText(new String(buffer));
+        setContentView(textView);
+
+        // Extra
+        // To obtain the file directory for a specified text file
+        File file = getFileStreamPath("Inputfile.txt");
+        String s = file.getAbsolutePath();
+        textView.setText(s);
+
+
+        // To obtain only directory
+        file = getFilesDir();
+        s = file.getAbsolutePath();
+
+        textView.setText(s);
         setContentView(textView);
     }
 }

@@ -7,6 +7,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -52,12 +56,55 @@ public class MainActivity extends AppCompatActivity {
                 "\nHeight: " + height + "" +
                 "\nWeight: " + weight);
 
-        setContentView(textView);
+//        setContentView(textView);
 
         /**
          * Q2: Access from another activity
          */
-        Intent intent = new Intent(this, Another_Activity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, Another_Activity.class);
+//        startActivity(intent);
+
+        /**
+         * Q3: Reading Self Preference from another Activity
+         */
+
+        // Extract data
+        SharedPreferences preferences_output = getSharedPreferences("Another_Activity",MODE_PRIVATE);
+
+        int bankNo = preferences_output.getInt("Bank Account No", 0001);
+        int bank_no_other = preferences_output.getInt("Bank Account other", -1);
+        int total_MONEY = preferences_output.getInt("Amount", 0);
+        name = preferences_output.getString("Beneficiary", "N/A");
+
+        textView.setText("Reading from private preferences in Main Activity...\n" +
+                "\nBank Account: " + bankNo + "" +
+                "\nBank Account Other: " + bank_no_other + "" +
+                "\nTotal Saving: " + total_MONEY + "" +
+                "\nBeneficiary: " + name);
+
+        setContentView(textView);
+
+
+        /**
+         * Q4: Writing to a file
+         * Need to write in bytestream
+         */
+        FileOutputStream fileOutputStream;
+        String strFileContents = "Lets write something is this file...";
+        String fileName = "TempInput.txt";
+
+        try {
+            fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+            fileOutputStream.write(strFileContents.getBytes());
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();    // from getting file
+        } catch (IOException e) {
+            e.printStackTrace();    // from writing file content
+        }
+
+        textView.setText("File has successfully written");
+        setContentView(textView);
     }
 }

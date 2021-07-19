@@ -7,9 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -105,6 +108,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         textView.setText("File has successfully written");
+        setContentView(textView);
+
+        // Extract data from text file
+        FileInputStream inputStream;
+        StringBuffer buffer = new StringBuffer();
+        BufferedReader bufferedReader;
+        String strLine = null;
+
+        try {
+            inputStream = openFileInput(fileName);
+            /** inputStream in byte form, convert using InputStreamReader
+             * An InputStreamReader is a bridge from byte stream to character streams
+             */
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+            while((strLine = bufferedReader.readLine()) != null){
+                buffer.append(strLine + "\nHello World");
+            }
+            inputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        textView.setText(new String(buffer));
         setContentView(textView);
     }
 }

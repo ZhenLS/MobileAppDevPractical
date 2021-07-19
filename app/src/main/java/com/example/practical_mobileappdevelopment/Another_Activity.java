@@ -38,6 +38,37 @@ public class Another_Activity extends AppCompatActivity {
                 "\nHeight: " + height + "" +
                 "\nWeight: " + weight);
 
+
+        /**
+         * Q3: Self Preferences
+         */
+        SharedPreferences preferences_self = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor pref_editor = preferences_self.edit();
+
+        pref_editor.putInt("Bank Account No", 843924432);
+        pref_editor.putInt("Amount" , 2192);
+        pref_editor.putString("Beneficiary", "Zhen");
+        pref_editor.commit();
+        pref_editor.remove("Beneficiary: ");
+        pref_editor.remove("Amount: ");
+        pref_editor.remove("Bank Account No: ");
+        pref_editor.commit();
+
+        // Extract data
+        SharedPreferences preferences_output = getPreferences(MODE_PRIVATE);
+
+        int bankNo = preferences_output.getInt("Bank Account No", 0001);
+        int bank_no_other = preferences_output.getInt("Bank Account other", -1);
+        int total_MONEY = preferences_output.getInt("Amount", 0);
+        name = preferences_output.getString("Beneficiary", "N/A");
+
+        textView.setText("Reading from private preferences...\n" +
+                "\nBank Account: " + bankNo + "" +
+                "\nBank Account Other: " + bank_no_other + "" +
+                "\nTotal Saving: " + total_MONEY + "" +
+                "\nBeneficiary: " + name);
+
         setContentView(textView);
+
     }
 }

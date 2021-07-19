@@ -2,35 +2,20 @@ package com.example.practical_mobileappdevelopment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class Another_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_another_);
 
-        /** Shared Preference
-         * 1. Use private mode normally
-         * 2. Open up editor
-         * 3. Put Data
-         * 4. Commit changes
-         * 5. Validate shared preference file
+        /** Act 2: Access from another activity
+         *
          */
-        SharedPreferences preferences = getSharedPreferences("MySharedPreferences", MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = preferences.edit();
-
-        // Insert some data: key & value
-        prefEditor.putString("Name", "John");
-        prefEditor.putInt("Age", 30);
-        prefEditor.putFloat("Height", 181);
-        prefEditor.putInt("Weight", 65);
-
-        prefEditor.commit();
 
         // Extract data
         SharedPreferences pref_output = getSharedPreferences(
@@ -45,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = new TextView(this);
         textView.setTextSize(20.0f);
-        textView.setText("Name: " + name +
+        textView.setText("This is from another activity..." +
+                "\nName: " + name +
                 "\nname: " + name_other + "" +
                 "\nAge: " + age + "" +
                 "\nAge_other: " + age_other + "" +
@@ -53,11 +39,5 @@ public class MainActivity extends AppCompatActivity {
                 "\nWeight: " + weight);
 
         setContentView(textView);
-
-        /**
-         * Q2: Access from another activity
-         */
-        Intent intent = new Intent(this, Another_Activity.class);
-        startActivity(intent);
     }
 }

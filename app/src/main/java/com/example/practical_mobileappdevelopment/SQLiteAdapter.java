@@ -16,7 +16,7 @@ public class SQLiteAdapter {
     public static final String VALUE = "Price";
 
     private static final String SCRIPT_CREATE_DATABASE =
-            "create table " +
+                    "create table " +
                     MYDATABASE_TABLE + " ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + KEY_CONTENT + " text not null, "
@@ -79,7 +79,7 @@ public class SQLiteAdapter {
         int index_CONTENT = cursor.getColumnIndex(KEY_CONTENT);
         int index_CONTENT_2 = cursor.getColumnIndex(KEY_CONTENT_2);
         int index_CONTENT_3 = cursor.getColumnIndex(VALUE);
-        /** */
+
         for (cursor.moveToFirst(); !(cursor.isAfterLast());
              cursor.moveToNext()) {
             result = result + cursor.getString(index_CONTENT) + "; "
@@ -95,7 +95,7 @@ public class SQLiteAdapter {
      * SELECT Content, Content_2, Value FROM MY_TABLE_Form
      * WHERE Content_2 == 'RICE' OR Content_2 == 'Flour'
      *
-     * @return
+     * @return result
      */
     public String queueMultipleColumnOnSelection() {
         String[] columns = new String[]{KEY_CONTENT, KEY_CONTENT_2, VALUE};
@@ -125,7 +125,7 @@ public class SQLiteAdapter {
      * WHERE Content_2 == 'RICE' OR Content_2 == 'Flour'
      * ORDER BY Content ASC
      *
-     * @return
+     * @return result
      */
     public String queueWithOrder() {
         String[] columns = new String[]{KEY_CONTENT, KEY_CONTENT_2, VALUE};
@@ -155,7 +155,7 @@ public class SQLiteAdapter {
      * GROUP BY Content_2 (Ingredient)
      * ORDER BY Content DESC
      *
-     * @return
+     * @return result
      */
     public String sumPriceByIngredient() {
         String[] columns = new String[]{KEY_CONTENT_2, "sum(" + VALUE + ")"};
@@ -175,6 +175,7 @@ public class SQLiteAdapter {
                     + cursor.getString(index_CONTENT_3)
                     + "\n";
         }
+        cursor.close();
         return result;
     }
 

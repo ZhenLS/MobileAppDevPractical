@@ -49,10 +49,6 @@ public class Another_Activity extends AppCompatActivity {
         pref_editor.putInt("Amount" , 2192);
         pref_editor.putString("Beneficiary", "Zhen");
         pref_editor.commit();
-        pref_editor.remove("Beneficiary: ");
-        pref_editor.remove("Amount: ");
-        pref_editor.remove("Bank Account No: ");
-        pref_editor.commit();
 
         // Extract data
         SharedPreferences preferences_output = getPreferences(MODE_PRIVATE);
